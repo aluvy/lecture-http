@@ -1,13 +1,16 @@
 # node_basic
 
-## tree
-.
+#### tree
+```
+./
 ├── public
 │   ├── ch01.html
 │   └── ch02.html
 ├── client.js
 └── server.js
+```
 
+#### terminal
 ```shell
 $ node server
 ```
