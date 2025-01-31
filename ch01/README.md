@@ -1,5 +1,5 @@
 # ch01
-http://localhost:3000 을 열고 상수 content의 내용을 띄운다.
+서버(http://localhost:3000)를 열고 상수 content의 내용을 띄운다.
 
 #### 서버 실행
 ```shell
