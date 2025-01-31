@@ -1,6 +1,7 @@
 # HTTP
 
-🔗 https://github.com/jeonghwan-kim/lecture-http
+🔗 https://github.com/jeonghwan-kim/lecture-http   
+🔗 https://jeonghwan-kim.github.io/2024/07/07/lecture-http-part1
 
 ## cURL
 🔗 cURL 다운로드: https://curl.se/download.html
