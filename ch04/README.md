@@ -39,3 +39,9 @@ $ openssl req -nodes -new -x509 -keyout server.key -out server.cert
 - 그러면 https-server 폴더에 server.cert 파일과 server.key 파일이 만들어진다.
   - cert: 인증서
   - key: private key
+
+## javascript에서 쿠키 접근 차단
+- document.cookie 로의 접근 및 수정 차단
+```javascript
+res.setHeader('Set-Cookie', 'sid=1; HttpOnly;');
+```
