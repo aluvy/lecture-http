@@ -13,7 +13,7 @@ const handler = (req, res) => {
   }
 
   // 첫 방문 시
-  res.setHeader('Set-Cookie', 'sid=1; Secure;');
+  res.setHeader('Set-Cookie', 'sid=1; HttpOnly;');
   res.write('Welcome.')
   res.end();
 }
