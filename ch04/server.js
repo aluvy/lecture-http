@@ -11,7 +11,7 @@ const handler = (req, res) => {
   }
 
   // 첫 방문 시
-  res.setHeader('Set-Cookie', 'sid=1')
+  res.setHeader('Set-Cookie', 'sid=1; Secure;');
   res.write('Welcome.')
   res.end();
 }
