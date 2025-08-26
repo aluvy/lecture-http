@@ -1,6 +1,14 @@
 const http = require('http'); // HTTP 모듈
 
-const options = new URL('http://localhost:3000/');
+// $ node my-client <url>
+const url = process.argv[2];
+
+if (!url) {
+  console.error('Usage: node ch01/my-client <url>');
+  process.exit();
+}
+
+const options = new URL(url);
 
 const handler = (res) => {
   const data = [];
@@ -23,5 +31,5 @@ const req = http.request(options, handler);
 req.end();
 
 /**
- * 클라이언트 실행: $ node ch01/my-client
+ * 클라이언트 실행: $ node ch01/my-client http://localhost:3000/ch01.txt
  */
