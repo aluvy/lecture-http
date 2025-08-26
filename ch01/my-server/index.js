@@ -1,24 +1,24 @@
-// node의 http 모듈을 가져와서 준비한다.
-const http = require("http")
-const path = require("path");
-const fs = require("fs");
+const http = require('http'); // HTTP 모듈
 
-const static = (req, res) => {
-  const filepath = path.join(__dirname, "public", req.url);
+const content = `HTTP Lecture
+1. Basic
+  1.1 HTTP Start
+  1.2 HTTP Message
 
-  fs.readFile(filepath, (err, data) => {
-    if (err) {
-      res.write("Not Found");
-      res.end();
-      return;
-    }
+2. Web Browser
+  2.1 Content Negotiation
+  2.2 Cookie
+`;
 
-    res.write(data)
-    res.end()
-  })
-}
-
-const handler = (req, res) => static(req, res);
+const handler = (req, res) => {
+  res.write(content);
+  res.end();
+};
 
 const server = http.createServer(handler);
-server.listen(3000, () => console.log("server is running: 3000"))
+server.listen(3000, () => console.log('server is running :: 3000'));
+
+/**
+ * 서버 실행: $ node ch01/my-server
+ * 브라우저에서 localhost: 3000 주소로 접속하면 content 에 입력한 내용이 뜬다.
+ */
