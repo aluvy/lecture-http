@@ -1,6 +1,7 @@
 # HTTP
 
-🔗 https://github.com/jeonghwan-kim/lecture-http
+🔗 https://github.com/jeonghwan-kim/lecture-http  
+🔗 https://jeonghwan-kim.github.io/posts?series=HTTP
 
 <br>
 
