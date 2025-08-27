@@ -66,7 +66,7 @@ Chapter 1. Basic
 
 ### 2.2.2 도메인
 
-> http://<b>localhost</b>:포트/경로?쿼리문자열#앵커
+> http://<strong style="font-size: 1.4em">localhost</strong>:포트/경로?쿼리문자열#앵커
 
 - 서버의 위치를 나타냄
 - 도메인의 IP를 알려주는 서버인 Domain Name System. 줄여서 DNS에 도메인 주소를 전달하면 IP주소를 얻을 수 있다.
@@ -74,7 +74,7 @@ Chapter 1. Basic
 
 ### 2.2.3 포트
 
-> http://localhost<b>:3000</b>/경로?쿼리문자열#앵커
+> http://localhost<strong  style="font-size: 1.4em">:3000</strong>/경로?쿼리문자열#앵커
 
 - IP로 접속한 서버는 여러 개의 포트가 있음
 - 클라이언트는 특정 포트를 통해 서버에 접속하고, 특정 어플리케이션에 접속할 수 있다.
@@ -92,7 +92,7 @@ Chapter 1. Basic
 
 ### 2.2.4 경로
 
-> http://localhost:3000<b>/ch01.txt</b>?쿼리문자열#앵커
+> http://localhost:3000<strong  style="font-size: 1.4em">/ch01.txt</strong>?쿼리문자열#앵커
 
 - 서버가 제공하는 파일의 위치
 - 경로
@@ -101,14 +101,82 @@ Chapter 1. Basic
 
 ### 2.2.5 쿼리문자열
 
-> http://localhost:3000/ch01.txt<b>?query=name</b>#앵커
+> http://localhost:3000/ch01.txt<strong  style="font-size: 1.4em">?query=name</strong>#앵커
 
 - 서버에 추가로 정보를 전달할 때 사용
 - 경로 뒤에 ? 로 시작하며 key=value 형태, 하나 이상일 때는 &로 연결
 
 ### 2.2.6 프레그먼트
 
-> http://localhost:3000/ch01.txt?query=name<b>#title</b>
+> http://localhost:3000/ch01.txt?query=name<strong  style="font-size: 1.4em">#title</strong>
 
 - 웹페이지 내에 특정 위치를 가리킴
 - html 마크업 id 속성과 매칭 됨
+
+## 2.3 요청, 리퀘스트
+
+- 클라이언트에서 서버로 전달하는 메시지
+
+```shell
+# 요청 헤더
+> GET /ch01.txt HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.7.1
+> Accept: */*
+>
+```
+
+> GET / ch01.txt HTTP/1.1
+
+- GET: 메소드
+  - 클라이언트와 서버 간의 요청 방식을 정의
+  - 클라이언트가 서버에게 어떤 작업을 수행할지를 메서드로 전달
+  - 메소드
+    - GET: 서버로부터 자원을 요청할 때 사용
+    - POST: 서버로 데이터를 전송하고 서버는 이 일을 처리해 새로운 자원을 생성
+    - PUT: 서버의 리소스 교체
+    - PATCH: 서버의 리소스를 부분적으로 교체
+    - DELETE: 서버의 특성 리소스를 삭제
+- /ch01.txt: 경로
+  - 서버의 어떤 파일을 가리키는지 알려줌
+- HTTP/1.1: 프로토콜 버전
+
+> Host: localhost: 3000
+
+- Host: localhost:3000: 요청을 보낼 호스트와 포트번호 (서버의 위치)
+
+> User-Agent: curl/8.7.1
+
+- User-Agent: 클라이언트 정보
+  - curl을 사용했기 때문에 curl/8.7.1 이라는 값으로 나타남
+  - 브라우저라면 브라우저 이름이 실린다.
+
+> Acccept: \*/\*
+
+- Accept: 클라이언트가 어떤 컨텐츠 타입을 받을 수 있는지 표시하는 값
+  - \*/\*: 어떤 컨텐츠 타입이든 받을 수 있다는 의미
+- 요청 헤더의 마지막을 빈 줄로 입력하면 요청헤더가 끝났다 라는 의미
+
+### 요청 헤더의 종류
+
+- Accept
+- Accept-Encoding
+- Accept-Language
+- User-Agent
+- Cookie
+- Origin
+
+- 캐싱 관련
+
+  - If-Modifyied-Since
+  - If-None-Match
+
+- 보안 관련
+  - Access-Control-Allow-Headers
+  - Access-Control-Allow-Method
+
+```shell
+- 예시에는 없지만 헤더가 끝난 뒤에는 요청 본문을 실을 수 있다.
+- 요청 헤더와 달리 요청 본문은 method에 따라서 선택사항 임
+- POST나 PUT, PATCH 같은 method에서는 사용할 수 있다.
+```
