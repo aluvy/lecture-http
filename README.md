@@ -187,11 +187,11 @@ Chapter 1. Basic
   - Access-Control-Allow-Headers
   - Access-Control-Allow-Method
 
-```shell
+## 요청 본문
+
 - 예시에는 없지만 헤더가 끝난 뒤에는 요청 본문을 실을 수 있다.
 - 요청 헤더와 달리 요청 본문은 method에 따라서 선택사항 임
 - POST나 PUT, PATCH 같은 method에서는 사용할 수 있다.
-```
 
 <br>
 
@@ -271,6 +271,7 @@ Chapter 1. Basic
 ## 응답 본문
 
 - 응답 헤더의 마지막 줄을 비우고 나면 본문이 시작된다.
+- 실제 데이터
 
 ```
 HTTP Lecture
