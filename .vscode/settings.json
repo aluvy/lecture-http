@@ -9,5 +9,6 @@
   "prettier.trailingComma": "es5",
   "prettier.printWidth": 999,
   "prettier.htmlWhitespaceSensitivity": "ignore",
-  "prettier.bracketSameLine": true
+  "prettier.bracketSameLine": true,
+  "workbench.colorTheme": "Dracula Theme Soft"
 }
