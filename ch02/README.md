@@ -8,9 +8,11 @@
 
 <br>
 
-## 2장. HTTP 메시지
+# 2장. HTTP 메시지
 
-### 2.2 URL
+<br>
+
+## 2.2 URL
 
 ```shell
 프로토콜://도메인:포트/경로?쿼리문자열#앵커
@@ -20,7 +22,9 @@
 - URL: 클라이언트와 요청을 보낼 때 대상이 되는 것
 - 일정한 방식의 자원, 위치 탐사기, 인터넷 상의 파일 위치를 지정하는 방식
 
-#### 2.2.1 프로토콜
+<br>
+
+### 2.2.1 프로토콜
 
 > <b>http:</b>//도메인:포트/경로?쿼리문자열#앵커
 
@@ -31,7 +35,9 @@
   - mailto: 이메일 전송용 프로토콜
   - tel: 전화를 위한 프로토콜
 
-#### 2.2.2 도메인
+<br>
+
+### 2.2.2 도메인
 
 > http://<strong style="font-size: 1.4em">localhost</strong>:포트/경로?쿼리문자열#앵커
 
@@ -39,7 +45,9 @@
 - 도메인의 IP를 알려주는 서버인 Domain Name System. 줄여서 DNS에 도메인 주소를 전달하면 IP주소를 얻을 수 있다.
 - 도메인 위치에 IP주소를 바로 사용해도 됨
 
-#### 2.2.3 포트
+<br>
+
+### 2.2.3 포트
 
 > http://localhost<strong  style="font-size: 1.4em">:3000</strong>/경로?쿼리문자열#앵커
 
@@ -57,7 +65,9 @@
   - 나머지
     - 동적 포트 (일시적으로 클라이언트가 서버와 통신하기 위한 포트)
 
-#### 2.2.4 경로
+<br>
+
+### 2.2.4 경로
 
 > http://localhost:3000<strong  style="font-size: 1.4em">/ch01.txt</strong>?쿼리문자열#앵커
 
@@ -66,14 +76,18 @@
 - 상황에 따라서는 서버의 실제 경로가 아닐 수도 있다. (서버 구현에 따라 다르다.)
 - 서버가 외부에 제공하는 추강화된 개념이라고 이해하는것이 더 좋다.
 
-#### 2.2.5 쿼리문자열
+<br>
+
+### 2.2.5 쿼리문자열
 
 > http://localhost:3000/ch01.txt<strong  style="font-size: 1.4em">?query=name</strong>#앵커
 
 - 서버에 추가로 정보를 전달할 때 사용
 - 경로 뒤에 ? 로 시작하며 key=value 형태, 하나 이상일 때는 &로 연결
 
-#### 2.2.6 프레그먼트
+<br>
+
+### 2.2.6 프레그먼트
 
 > http://localhost:3000/ch01.txt?query=name<strong  style="font-size: 1.4em">#title</strong>
 
@@ -82,7 +96,7 @@
 
 <br>
 
-### 2.3 요청, request
+## 2.3 요청, request
 
 ```shell
 # 요청 헤더
@@ -132,7 +146,9 @@
   - \*/\*: 어떤 컨텐츠 타입이든 받을 수 있다는 의미
 - 요청 헤더의 마지막을 빈 줄로 입력하면 요청헤더가 끝났다 라는 의미
 
-#### 요청 헤더의 종류
+<br>
+
+### 요청 헤더의 종류
 
 - Accept
 - Accept-Encoding
@@ -150,7 +166,9 @@
   - Access-Control-Allow-Headers
   - Access-Control-Allow-Method
 
-#### 요청 본문
+<br>
+
+### 요청 본문
 
 - 예시에는 없지만 헤더가 끝난 뒤에는 요청 본문을 실을 수 있다.
 - 요청 헤더와 달리 요청 본문은 method에 따라서 선택사항 임
@@ -158,7 +176,7 @@
 
 <br>
 
-### 2.4 응답, response
+## 2.4 응답, response
 
 ```shell
 # 응답 헤더
@@ -213,7 +231,9 @@
 
 - TCP 연결을 유지할 수 있는 제한시간 (5초)
 
-#### 응답 헤더의 종류
+<br>
+
+### 응답 헤더의 종류
 
 - Content-Type
 - Content-Encoding
@@ -231,7 +251,9 @@
   - Access-Control-Allow-Methods
   - Access-Control-Allow-Max-Age
 
-#### 응답 본문
+<br>
+
+### 응답 본문
 
 - 응답 헤더의 마지막 줄을 비우고 나면 본문이 시작된다.
 - 실제 데이터

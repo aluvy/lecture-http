@@ -14,7 +14,7 @@
 
 <br>
 
-## 3장. 컨텐츠 협상
+# 3장. 컨텐츠 협상
 
 - 서버는 다양한 클라이언트에 적합한 자원을 제공해야 합니다.
   - 같은 내용이라도 클라이언트마다 필요한 문서 형식이 다르다.
@@ -24,7 +24,9 @@
   - 클라이언트와 함께 서로 입장 차이를 줄여나가고 주고 받을 자원의 형태를 결정하는 것이 컨텐츠 협상이다.
 - 컨텐츠 협상에 사용되는 HTTP 헤더와 동작 방식을 공부합니다.
 
-### 3.1 컨텐츠 타입
+<br>
+
+## 3.1 컨텐츠 타입
 
 > 클라이언트: html문서로 보내주세요
 
@@ -55,7 +57,7 @@ $ curl https://github.com/jeonghwan-kim/jeonghwan-kim.github.com -H "Accept: app
 
 <br>
 
-### 3.2 압축
+## 3.2 압축
 
 > 클라이언트: 저는 이런 압축 알고리즘을 알고 있어요 가능하면 이걸로 보내주세요
 
@@ -90,7 +92,9 @@ $ curl https://github.com/jeonghwan-kim/jeonghwan-kim.github.com -H "Accept-Enco
 - 결과: 압축을 해제하여 콘솔로 출력해준다.
   - 압축돼서 데이터를 요청 > 압축한 파일을 서버로부터 전달 받음 > 압축 해제하여 바로 콘솔에 출력
 
-### 3.3 언어
+<br>
+
+## 3.3 언어
 
 > 클라이언트: 이 URL의 자원을 요청하는데요 가능하면 한글 문서를 주세요
 
@@ -105,7 +109,9 @@ $ curl https://github.com/jeonghwan-kim/jeonghwan-kim.github.com -H "Accept-Enco
   - 브라우저에서 언어설정을 변경하면 같은 URL이라도 다른 웹페이지를 볼 수 있다.
 - 라이브러리: express.js req.acceptLanguage(), accepts, negotiator
 
-### 3.4 사용자 에이전트
+<br>
+
+## 3.4 사용자 에이전트
 
 - User-Agent 요청 헤더
   - User-Agent는 각 브라우저가 원하는 문자열을 사용한다. (가령 Chrome 브라우저인데 Safari 문자가 있는 식)
