@@ -3,51 +3,10 @@
 🔗 https://github.com/jeonghwan-kim/lecture-http  
 🔗 https://jeonghwan-kim.github.io/2024/07/07/lecture-http-part1
 
+- 1장. HTTP 시작: 웹의 탄생 배경과 역사에 대해 알 수 있다.
+- 2장. HTTP 메시지: HTTP의 주요 요소에 대해 배울 수 있다.
+
 <br>
-
-## 1장. HTTP 시작
-
-### 1.4 cURL
-
-🔗 cURL 다운로드: https://curl.se/download.html
-
-- client for URL의 약자. URL을 받아 서버로 요청을 보내고 받은 응답을 출력하는 도구
-- cURL로 HTTP 요청 및 응답 확인하기
-
-```shell
-$ curl http://localhost:3000/ch01.txt -v
-$ curl http://localhost:3000/ch01.txt --verbose
-```
-
-- 결과
-
-```shell
-* Host localhost:3000 was resolved.
-* IPv6: ::1
-* IPv4: 127.0.0.1
-*   Trying [::1]:3000...
-* Connected to localhost (::1) port 3000
-> GET /ch01.txt HTTP/1.1
-> Host: localhost:3000
-> User-Agent: curl/8.7.1
-> Accept: */*
->
-* Request completely sent off
-< HTTP/1.1 200 OK
-< Date: Fri, 31 Jan 2025 08:51:06 GMT
-< Connection: keep-alive
-< Keep-Alive: timeout=5
-< Transfer-Encoding: chunked
-<
-HTTP Lecture
-
-Chapter 1. Basic
-  1.1 HTTP Start
-* Connection #0 to host localhost left intact
-  1.2 HTTP Message%
-```
-
-<br><br>
 
 ## 2장. HTTP 메시지
 
@@ -284,5 +243,3 @@ Chapter 1. Basic
   1.1 HTTP Start
   1.2 HTTP Message* Connection #0 to host localhost left intact
 ```
-
-<br><br>
