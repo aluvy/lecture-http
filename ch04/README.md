@@ -125,10 +125,53 @@ server.js 설정을 마친 후 https://localhost:3000/ 로 접속 가능
 
 ## 4.5 쿠키 HttpOnly
 
+네트워크 외에도 쿠키가 탈취될 수 있는 경우는 더 있다.  
+바로 자바스크립트로 접근할 수 있는 document.cookie 다.
+
+```javascript
+document.cookie; // "sid=1"
+document.cookie = 'sid=2'; // "sid=2"로 바꿀 수 있다.
+document.cookie; // "sid=2"
+```
+
+악의적인 목적으로 쿠키를 변경한다면 요청이 위조될 수 있는 위험이 있다.  
+애초에 자바스크립트로 쿠키의 접근을 차단한다면 이런 악용 시나리오도 예방할 수 있다.
+
+- 자바스크립트로 쿠키를 위조할 수 있다.
+- HttpOnly 쿠키 디렉티브
+  - 자바스크립트로부터 쿠키 접근을 차단하고 오직 http 요청에만 쿠키를 사용할 때 쓰는 디렉티브
+  - 서버는 클라이언트에게 HTTP 요청에만 이 쿠키를 사용하라고 지시
+  - HttpOnly 디렉티브를 받은 브라우저는 자바스크립트로 document.cookie에 접근하는 것을 차단한다.
+
+```shell
+< Set-Cookie: sid=1; httpOnly
+```
+
 <br>
 
 ## 4.6 쿠키 라이브러리(서버)
 
+- 쿠키 데이터를 문자열로 변환하는 함수: Express.js res.cookie()
+  - https://github.com/expressjs/express/blob/master/lib/response.js#L749
+- 문자열을 쿠키 데이터로 변환하는 함수: cookie-parser
+  - https://github.com/expressjs/cookie-parser/blob/master/index.js
+
 <br>
 
 ## 4.7 쿠키 라이브러리(브라우저)
+
+- 브라우저에서 쿠키를 제어하는 사례. '오늘 하루 다시 보지 않기'
+- 쿠키 데이터를 변경/조회/삭제하는 라이브러리: js-cookie
+  - https://github.com/js-cookie/js-cookie/tree/main
+  - https://github.com/js-cookie/js-cookie/blob/main/src/api.mjs
+
+```javascript
+document.cookie = 'checked=true; MaxAge=86400';
+```
+
+```javascript
+// js-cookie
+Cookie.set('checked', true, { ['Max-Age']: 86400 });
+Cookie.get('checked'); // true
+Cookie.remove('checked'); // 쿠키의 checked 값을 지운다.
+```
