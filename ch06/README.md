@@ -32,17 +32,26 @@
 ## 6-2. Fetch API
 
 - fetch(url, [options]) 함수
+  - https://developer.mozilla.org/ko/docs/Web/API/Window/fetch
 - Request 객체
 - 로그인 POST 요청 제작
 - JSON 형식
+
+```javascript
+fetch(resource);
+fetch(resource, options);
+```
 
 <br>
 
 ## 6-3. Response 객체
 
-- fetch()는 응답 객체로 이행하는 프라미스를 반환
+- fetch()는 응답 객체로 이행하는 Promise를 반환
+  - https://developer.mozilla.org/ko/docs/Web/API/Response
 - 응답 헤더
+  - Response.headers
 - 응답 본문
+  - Response.json(), Response.text(), Response.blob() 등
 
 <br>
 
