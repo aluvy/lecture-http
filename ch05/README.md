@@ -80,4 +80,12 @@ HTML로 만든 문서는 텍스트 그 이상이다.
   - 요청 데이터를 URL이 아닌 Body, 요청 본문에 싣는다.
   - 길이 제한이 없음
   - 데이터 보호하는 데에 적합함
-- application/x-www-form-urlencoded과 multipart/form-data
+- application/x-www-form-urlencoded 과 multipart/form-data
+  - application/x-www-form-urlencoded
+    - GET, POST 방식
+    - 데이터가 많아지면 전송에 비효율적
+    - 파일을 전송할 수 없음
+  - multipart/form-data
+    - 이미지나 파일 전송 가능
+    - 요청 본문을 여러 부분으로 나누어서 사용
+    - 각 부분은 다시 헤더와 바디로 구성된다

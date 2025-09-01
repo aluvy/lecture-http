@@ -1,5 +1,6 @@
 const http = require('http');
 const path = require('path');
+const querystring = require('querystring');
 
 const static = require('./shared/serve-static');
 
@@ -39,11 +40,35 @@ const getLogin = (req, res) => {
   res.end();
 };
 
+const postLogin = (req, res) => {
+  let body = '';
+
+  req.on('data', (chunk) => {
+    body = body + chunk.toString();
+  });
+
+  req.on('end', () => {
+    const { email, password } = querystring.parse(body);
+    const authenticated = email === 'myemail' && password === 'mypassword';
+
+    if (!authenticated) {
+      res.statusCode = 401;
+      res.write('Unauthorized\n');
+      res.end();
+      return;
+    }
+
+    res.write('Success\n');
+    res.end();
+  });
+};
+
 const handler = (req, res) => {
   const { pathname } = new URL(req.url, `http://${req.headers.host}`);
 
   if (pathname === '/tracking-pixel.gif') logRequest(req);
-  if (pathname === '/login') return getLogin(req, res);
+  // if (pathname === '/login') return getLogin(req, res);
+  if (pathname === '/login') return postLogin(req, res);
 
   static(path.join(__dirname, 'public'))(req, res);
 };
