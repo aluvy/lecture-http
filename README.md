@@ -18,9 +18,9 @@
 
 ### 03. AJAX
 
-- [6장. 업로드와 응답]
-- [7장. 진행율과 취소]
-- [8장. 라이브러리]
+- [6장. 업로드와 응답](https://github.com/aluvy/lecture-http/blob/main/ch06/README.md)
+- [7장. 진행율과 취소](https://github.com/aluvy/lecture-http/blob/main/ch07/README.md)
+- [8장. 라이브러리](https://github.com/aluvy/lecture-http/blob/main/ch08/README.md)
 
 ### 04. 추가 프로토콜
 
