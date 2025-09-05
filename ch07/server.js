@@ -18,10 +18,17 @@ const chunk = async (req, res) => {
   res.end();
 };
 
+const upload = (req, res) => {
+  res.setHeader('Content-type', 'text/plain');
+  res.write('success\n');
+  res.end();
+};
+
 const handler = (req, res) => {
   const { pathname } = new URL(req.url, `http://${req.headers.host}`);
 
   if (pathname === '/chunk') return chunk(req, res);
+  if (pathname === '/upload') return upload(req, res);
 
   static(path.join(__dirname, 'public'))(req, res);
 };

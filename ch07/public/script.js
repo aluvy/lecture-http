@@ -71,6 +71,7 @@ class Aborter {
       cancelMsgEl.style.color = 'red';
       document.body.appendChild(cancelMsgEl);
     });
+    document.body.appendChild(abortButton);
   }
 }
 
@@ -86,7 +87,7 @@ class Uploader {
 
   upload(file) {
     const formData = new FormData();
-    formData.append('fild', file);
+    formData.append('file', file);
 
     const xhr = new XMLHttpRequest();
     xhr.upload.addEventListener('progress', (event) => {
