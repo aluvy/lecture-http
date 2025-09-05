@@ -40,8 +40,34 @@
 
 ## 8-3. Ky
 
+- https://github.com/sindresorhus/ky
 - fetch 기반. 2018년 출시. 타입스크립트
+- HTTP 메소드별 전용 함수
+- 프라미스 사용을 간소화
+- Error 클래스를 확장한 HTTPError
+- 훅으로 확장
 
 <br>
 
 ## 8-4. Wretch
+
+- https://github.com/elbywan/wretch
+- fetch 기반. 2017년 출시. 타입스크립트
+- HTTP 메소드별 전용 함수
+- Error 클래스를 확장한 WrechError
+- 미들웨어, 애드온으로 확장
+
+<br>
+
+## 8-5. 중간정리
+
+- 비슷한 점
+  - HTTP 메소드별로 함수를 제공한다
+  - 일관된 응답 객체를 제공한다
+  - 일관된 오류 객체를 제공한다
+  - 구조와 이름만 다를 뿐 확장하는 인터페이스를 제공한다
+- 다른 점
+  - SuperAgent: 가장 오래 됨. 크로스브라우저
+  - Axios: xhr 기반. 프라이스 인터페이스 제공
+  - Ky: fetch 기반. 프라미스 사용 간소화
+  - Wretch: 오류 전용 캐처, 미들웨어, 애드온 등 편의 제공

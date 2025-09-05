@@ -13,10 +13,8 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
   <script type="module">
-    // ky 로딩
-    import ky from 'https://cdn.jsdelivr.net/npm/ky/index.min.js';
-    // wretch 로딩
-    import wretch from 'https://cdn.skypack.dev/wretch/dist/bundle/wretch.all.min.mjs'
+    import ky from 'https://cdn.jsdelivr.net/npm/ky/index.min.js';  // ky 로딩
+    import wretch from 'https://cdn.skypack.dev/wretch/dist/bundle/wretch.all.min.mjs'  // wretch 로딩
 
     const testSuperagnt = async () => {
       const attachCustomHeader = (request) => {
@@ -56,7 +54,61 @@
         console.log('error', error)
       }
     }
-    testAxios();
+    // testAxios();
+
+    const testKy = async () => {
+      const attachCustomHeader = (request) => {
+        request.headers.set('X-Foo', 'foo');
+      }
+
+      try {
+        const response = await ky.get('/api/fail', {
+          hooks: {
+            beforeRequest: [attachCustomHeader],
+            // afterResponse,
+            // beforeRetry,
+            // beforeError
+          }
+        }).json();
+        console.log('response', response);
+
+      } catch (error) {
+        console.log('error', error);
+        console.log('error.name', error.name);
+        console.log('error.message', error.message);
+        console.log('error.response', error.response);
+      }
+    }
+    // testKy();
+
+    const testWretch = async () => {
+      const attachCustomHeader = (next) => {
+        return (url, options) => {
+          options.headers = {
+            'X-foo': 'foo'
+          }
+          return next(url, options);
+        }
+      }
+
+      try {
+        const response = await wretch()
+          .middlewares([attachCustomHeader])
+          .get('/api/foo')
+          .notFound(err => {
+            console.log('notFound err', err);
+            return err.text;
+          }).json();
+        console.log('response', response);
+
+      } catch (error) {
+        console.log('error', error);
+        console.log('error.status', error.status);
+        console.log('error.json', error.json);
+        console.log('error.response', error.response);
+      }
+    }
+    testWretch();
 
   </script>
 </head>
