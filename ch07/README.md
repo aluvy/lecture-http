@@ -28,13 +28,20 @@ https://developer.mozilla.org/ko/docs/Web/API/Response#%EC%9D%B8%EC%8A%A4%ED%84%
 - 서버 준비
 - 응답 진행율 계산
 
+```shell
+$ curl http://localhost:3000/chunk -v
+```
+
 <br>
 
 ## 7-2. 응답 취소
 
 - AbortController
+  - https://developer.mozilla.org/ko/docs/Web/API/AbortController
 - AbortSignal
+  - https://developer.mozilla.org/ko/docs/Web/API/AbortSignal
 - Request: signal 속성
+  - https://developer.mozilla.org/en-US/docs/Web/API/Request/signal
 - 응답 취소 구현
 
 <br>
