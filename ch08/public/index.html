@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CH08</title>
+
+  <!-- superagent 로딩 -->
+  <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+
+  <!-- axios 로딩 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+  <script type="module">
+    // ky 로딩
+    import ky from 'https://cdn.jsdelivr.net/npm/ky/index.min.js';
+
+    // wretch 로딩
+    import wretch from 'https://cdn.skypack.dev/wretch/dist/bundle/wretch.all.min.mjs'
+
+    // testSuperagnt
+    const testSuperagnt = async () => {
+      const attachCustomHeader = (request) => {
+        request.header['X-foo'] = 'foo'
+        return request;
+      }
+      try {
+        // const response = await superagent.get('/api/success');
+        // const response = await superagent.get('/api/fail');
+        const response = await superagent.get('/api/success').use(attachCustomHeader);
+
+        console.log('response', response);
+        console.log('response.body.result: ', response.body.result);
+        console.log('response.text: ', response.text);
+
+      } catch (error) {
+        console.log('error', error);
+        console.log('error.status', error.status);
+        console.log('error.response', error.response);
+      }
+    }
+    testSuperagnt();
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
