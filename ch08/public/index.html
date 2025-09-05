@@ -15,11 +15,9 @@
   <script type="module">
     // ky 로딩
     import ky from 'https://cdn.jsdelivr.net/npm/ky/index.min.js';
-
     // wretch 로딩
     import wretch from 'https://cdn.skypack.dev/wretch/dist/bundle/wretch.all.min.mjs'
 
-    // testSuperagnt
     const testSuperagnt = async () => {
       const attachCustomHeader = (request) => {
         request.header['X-foo'] = 'foo'
@@ -40,7 +38,25 @@
         console.log('error.response', error.response);
       }
     }
-    testSuperagnt();
+    // testSuperagnt();
+
+    const testAxios = async () => {
+      const customHeaderInterceptor = (config) => {
+        config.headers['X-foo'] = 'foo'
+        return config
+      }
+
+      axios.interceptors.request.use(customHeaderInterceptor);
+
+      try {
+        const response = axios.get('/api/fail')
+        console.log('response', response);
+
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+    testAxios();
 
   </script>
 </head>

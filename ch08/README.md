@@ -30,6 +30,7 @@
 
 ## 8-2. Axios
 
+- https://github.com/axios/axios
 - XHR 기반. 2014년 출시. 프라미스 기반
 - HTTP 메소드별 전용 함수
 - AxiosError
