@@ -24,10 +24,10 @@
 
 ### 04. 추가 프로토콜
 
-- [9장. 폴링]
-- [10장. 롱 폴링]
-- [11장. SSE]
-- [12장. 웹 소켓]
+- [9장. 폴링](https://github.com/aluvy/lecture-http/blob/main/ch09/README.md)
+- [10장. 롱 폴링](https://github.com/aluvy/lecture-http/blob/main/ch10/README.md)
+- [11장. SSE](https://github.com/aluvy/lecture-http/blob/main/ch11/README.md)
+- [12장. 웹 소켓](https://github.com/aluvy/lecture-http/blob/main/ch12/README.md)
 
 ### 05. 보안
 
