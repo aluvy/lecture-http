@@ -67,4 +67,4 @@ curl -v -X POST http://localhost:3000/update ^
 - 주의사항 1: 네트웍과 서버 자원을 낭비할 수 있다.
 - 주의사항 2: 지연 시간
 
-- test2
+- test3
