@@ -1,4 +1,4 @@
-# 03. AJAX
+# 04. 추가 프로토콜
 
 🔗 https://github.com/jeonghwan-kim/lecture-http  
 🔗 https://jeonghwan-kim.github.io/2024/07/10/lecture-http-part4
@@ -46,6 +46,14 @@ data: Hello again
 - 클라이언트 대기열 준비
 - 알림 구독 기능
 - 채팅 메시지 추가 기능
+
+```shell
+$ curl http://localhost:3000/subscribe -v
+
+$ curl http://localhost:3000/update ^
+--header "Content-Type: application:json" ^
+--data "{\"text\": \"hello\"}" -v
+```
 
 <br>
 

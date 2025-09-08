@@ -1,4 +1,4 @@
-# 03. AJAX
+# 04. 추가 프로토콜
 
 🔗 https://github.com/jeonghwan-kim/lecture-http  
 🔗 https://jeonghwan-kim.github.io/2024/07/10/lecture-http-part4

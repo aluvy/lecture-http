@@ -3,10 +3,54 @@ const path = require('path');
 const static = require('./shared/serve-static');
 const Message = require('./shared/message');
 
+let waitingClients = [];
 let message = null;
+
+const subscribe = (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.write('\n');
+
+  waitingClients.push(res);
+
+  req.on('close', () => {
+    waitingClients = waitingClients.filter((client) => client !== res);
+  });
+};
+
+const update = (req, res) => {
+  let body = '';
+
+  req.on('data', (chunk) => {
+    body = body + chunk.toString();
+  });
+
+  req.on('end', () => {
+    const { text } = JSON.parse(body);
+
+    if (!text) {
+      res.statusCode = 400;
+      res.setHeader('Content-Type', 'application/json');
+      res.write(JSON.stringify({ error: 'text 필드를 채워주세요' }));
+      res.end();
+      return;
+    }
+
+    message = new Message(text);
+
+    for (const waitingClient of waitingClients) {
+      waitingClient.write([`data: ${message}\n\n`].join(''));
+    }
+
+    res.write(`${message}`);
+    res.end();
+  });
+};
 
 const handler = (req, res) => {
   const { pathname } = new URL(req.url, `http://${req.headers.host}`);
+
+  if (pathname === '/subscribe') return subscribe(req, res);
+  if (pathname === '/update') return update(req, res);
 
   static(path.join(__dirname, 'public'))(req, res);
 };
