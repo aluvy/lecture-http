@@ -31,11 +31,17 @@
 
 ### 05. 보안
 
-- [13장. 브라우저 보안]
-- [14장. CORS]
-- [15장. HTTPS]
+- [13장. 브라우저 보안](https://github.com/aluvy/lecture-http/blob/main/ch13/README.md)
+- [14장. CORS](https://github.com/aluvy/lecture-http/blob/main/ch14/README.md)
+- [15장. HTTPS](https://github.com/aluvy/lecture-http/blob/main/ch15/README.md)
 
 ### 06. 성능
 
-- [16장. 로딩 최적화]
-- [17장. 캐싱]
+- [16장. 로딩 최적화](https://github.com/aluvy/lecture-http/blob/main/ch16/README.md)
+- [17장. 캐싱](https://github.com/aluvy/lecture-http/blob/main/ch17/README.md)
+
+<br>
+<hr>
+<br>
+
+- [Quiz](https://github.com/aluvy/lecture-http/blob/main/QUIZ.md)
