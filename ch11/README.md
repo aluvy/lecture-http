@@ -66,14 +66,25 @@ $ curl http://localhost:3000/update ^
 
 ## 11-4. 재연결
 
-- EventSource 객체는 서버와 연결이 끊기면 다시 연결. retry로 설정
+- EventSource 객체는 서버와 연결이 끊기면 자동으로 다시 연결
+  - 시간 간격 커스텀 가능: retry로 설정
 - 이전에 받은 메시지가 있다면 last-event-id 헤더에 값을 실어서 보낸다.
+
+```javascript
+waitingClient.write(
+  [
+    `retry: 10000\n`,
+    `id: ${message.timestamp}\n`, // last event id
+    `data: ${message}\n\n`, // 개행
+  ].join('')
+);
+```
 
 <br>
 
 ## 11-5. 중간 정리
 
-- 클라이언트와 서버 연결 유지 및 실시간 메시지 전송 기법
+- 클라이언트와 서버 연결 유지 및 '실시간' 메시지 전송 기법
 - EventSource
 - 특징: 실시간 알림을 위한 프로토콜
 - 주의사항: 단방향 메시지

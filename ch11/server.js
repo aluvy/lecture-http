@@ -7,6 +7,9 @@ let waitingClients = [];
 let message = null;
 
 const subscribe = (req, res) => {
+  const lastEventId = req.headers['last-event-id'];
+  console.log('lastEventId', lastEventId);
+
   res.setHeader('Content-Type', 'text/event-stream');
   res.write('\n');
 
@@ -38,7 +41,13 @@ const update = (req, res) => {
     message = new Message(text);
 
     for (const waitingClient of waitingClients) {
-      waitingClient.write([`data: ${message}\n\n`].join(''));
+      waitingClient.write(
+        [
+          `retry: 10000\n`,
+          `id: ${message.timestamp}\n`, // last event id
+          `data: ${message}\n\n`, // 개행
+        ].join('')
+      );
     }
 
     res.write(`${message}`);
