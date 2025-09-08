@@ -1,10 +1,3 @@
-const subscribe = () => {
-  const eventSource = new EventSource('/subscribe'); // eventSource 객체
-  eventSource.addEventListener('message', (event) => {
-    render(JSON.parse(event.data));
-  });
-};
-
 const render = (message) => {
   const messageElement = document.createElement('div');
   const { text } = message;
@@ -13,8 +6,6 @@ const render = (message) => {
   document.body.appendChild(messageElement);
 };
 
-const init = () => {
-  subscribe();
-};
+const init = () => {};
 
 document.addEventListener('DOMContentLoaded', init);

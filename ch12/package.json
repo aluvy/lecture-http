@@ -1,0 +1,16 @@
+{
+  "name": "ch12",
+  "version": "1.0.0",
+  "description": "🔗 https://github.com/jeonghwan-kim/lecture-http  \r 🔗 https://jeonghwan-kim.github.io/2024/07/10/lecture-http-part4",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
