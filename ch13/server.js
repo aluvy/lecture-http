@@ -92,14 +92,20 @@ const index = (req, res) => {
 
   res.setHeader('Content-Type', 'text/html');
   // res.setHeader('Content-Security-Policy', 'default-src "self"'); // Content-Security-Policy 응답 헤더
-  res.setHeader('Content-Security-Policy-Report-Only', 'default-src "self"; report-uri /report'); // Content-Security-Policy-Report-Only 응답 헤더
+  // res.setHeader('Content-Security-Policy-Report-Only', 'default-src "self"; report-uri /report'); // Content-Security-Policy-Report-Only 응답 헤더
   res.write(`
     <!DOCTYPE html>
     <html>
       <head>
-        <style>input {width: 600px;}</style>
+        <style>
+          input {width: 600px;}
+          @font-face {
+            font-family: 'MyCustomFont;
+            src: url('http://other-origin.com/MyCustomFont.woff2');
+          }
+        </style>
       </head>
-      <body>
+      <body style="font-family: 'MyCustomFont';">
         ${userAccount ? userAccount.name + ', ' + userAccount.email : 'Guest'}
         <input type="hidden" value="my-csrf-token">
         <form method="POST" action="/product">
