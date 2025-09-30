@@ -33,6 +33,40 @@
 - 이스케이프(Escape)로 예방
 - 다른 공격의 기점이 됨.
 
+### 13-1-1. Sanitize
+
+- input 창을 통해 자바스크립트 주입 공격 ==> Sanitize로 예방
+
+```javascript
+<script>alert('hello')</script>
+```
+
+- 사용자가 input 창 등을 통해 입력한 HTML에서 위험하다고 판단되는 스크립트를 찾아내 제거하는 기법을 Sanitize라고 한다.
+- 이런 역할을 하는 대표적인 라이브러리가 DOMPurify다.
+- XSS 같은 공격을 방어하기 위해 신뢰할 수 없는 HTML을 안전하게 정화해주는 라이브러리.
+- DOMPurify는 스크립트 태그는 아얘 없애버린다.
+  - https://github.com/cure53/DOMPurify
+  - https://cure53.de/purify
+
+### 13-1-2. Escape
+
+input 창을 통해 HTML 태그 주입 공격 ==> Escape로 예방
+
+```javascript
+<h1>Product3</h1>
+```
+
+- 특정 문자나 태그를 브라우저가 해석하지 못하도록 변환하는 방법
+
+```javascript
+const escapedProduct = product.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+database.products.push(escapedProduct);
+```
+
+- 이 과정을 돕는 대표적인 도구가 lodash escape라는 함수이다.
+  - https://lodash.com/docs/4.17.15#escape
+  - https://github.com/lodash/lodash/blob/main/lodash.js#L398
+
 <br>
 
 ## 13-2. 세션 하이재킹
@@ -41,6 +75,7 @@
 - 인증된 사용자에게 제공되는 맞춤형 HTML
 - 쿠키 취약성을 이용한 세션 탈취 공격
 - 쿠키 설정으로 예방
+  - http only 디렉티브 사용 (javascript가 제한 됨)
 
 <br>
 
