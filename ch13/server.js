@@ -34,7 +34,8 @@ const login = (req, res) => {
   // index로 리다이렉션
   res.statusCode = 301;
   res.setHeader('Location', '/');
-  res.setHeader('Set-Cookie', `sid=${sid}; HttpOnly`); // 세션 하이재킹 예방
+  res.setHeader('Set-Cookie', `sid=${sid}; HttpOnly;`); // 세션 하이재킹 예방
+  res.setHeader('Set-Cookie', `sid=${sid}; SameSite=Strict;`); // CSRF 예방
   res.end();
 };
 
@@ -79,7 +80,8 @@ const index = (req, res) => {
         <style>input {width: 600px;}</style>
       </head>
       <body>
-      ${userAccount ? userAccount.name + ', ' + userAccount.email : 'Guest'}
+        ${userAccount ? userAccount.name + ', ' + userAccount.email : 'Guest'}
+        <input type="hidden" value="my-csrf-token">
         <form method="POST" action="/product">
           <input type="text" name="product">
           <button type="submit">Add</button>

@@ -7,7 +7,7 @@ const log = (req, res) => console.log(`${req.method} ${req.url}`);
 // 서버 인스턴스를 준비합니다.
 const server = http.createServer((req, res) => {
   // 모든 요청을 기록합니다.
-  log(res, req);
+  log(req, res);
 
   // 빈 응답을 보냈습니다.
   res.end();

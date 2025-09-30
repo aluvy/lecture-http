@@ -75,7 +75,7 @@ database.products.push(escapedProduct);
 - 인증된 사용자에게 제공되는 맞춤형 HTML
 - 쿠키 취약성을 이용한 세션 탈취 공격
 - 쿠키 설정으로 예방
-  - http only 디렉티브 사용 (javascript가 제한 됨)
+  - 쿠키 디렉티브 HttpOnly 사용 (javascript가 제한 됨)
 
 <br>
 
@@ -83,8 +83,14 @@ database.products.push(escapedProduct);
 
 - 사용자 권한을 탈취해 악의적인 요청을 보내는 공격
 - 쿠키 설정으로 예방
-- CSRF 토큰으로 예방
+  - 쿠키 디렉티브 SameSite=Strict 사용
+  - https://developer.mozilla.org/ko/docs/Web/HTTP/Guides/Cookies#samesite
+- CSRF(Cross Site Request Forgery) 토큰으로 예방
+  - `<input type="hidden" value="my-csrf-token">`
 - CAPTCHA로 예방
+  - Completely Automated Public Turing test to tell Computers and Humans Apart
+  - 완전 자동화된 사람과 컴퓨터 판별
+  - 캡챠
 
 <br>
 
