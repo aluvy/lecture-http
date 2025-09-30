@@ -67,12 +67,32 @@ const postProduct = (req, res) => {
   });
 };
 
+const report = (req, res) => {
+  let body = '';
+
+  req.on('data', (chunk) => {
+    body = body + chunk.toString();
+  });
+
+  req.on('end', () => {
+    // JSON 형태의 본문을 받는다.
+    const report = JSON.parse(body);
+
+    // 리포트를 출력한다.
+    console.log('CSP Report:', report);
+
+    res.end();
+  });
+};
+
 // index.html 동적으로 만들기
 const index = (req, res) => {
   const sid = parseCookie(req)['sid'] || '';
   const userAccount = database.session[sid] || '';
 
   res.setHeader('Content-Type', 'text/html');
+  // res.setHeader('Content-Security-Policy', 'default-src "self"'); // Content-Security-Policy 응답 헤더
+  res.setHeader('Content-Security-Policy-Report-Only', 'default-src "self"; report-uri /report'); // Content-Security-Policy-Report-Only 응답 헤더
   res.write(`
     <!DOCTYPE html>
     <html>
@@ -101,6 +121,8 @@ const server = http.createServer((req, res) => {
   if (pathname === '/login') return login(req, res);
   if (pathname === '/logout') return logout(req, res);
   if (pathname === '/product') return postProduct(req, res);
+
+  if (pathname === '/report') return report(req, res);
 
   index(req, res);
 });

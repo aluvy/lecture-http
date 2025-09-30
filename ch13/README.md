@@ -97,9 +97,33 @@ database.products.push(escapedProduct);
 ## 13-4. 컨텐츠 보안 정책
 
 - Content-Security-Policy 응답 헤더
+  - `res.setHeader('Content-Security-Policy', 'defaultsrc "self"');`
+  - 모든 리소스가 사이트 자체에서 와야한다.
+  - 다른 출처에서 가져온 리소스들을 사용할 수 없음 (cdn, font 등..)
+  - https://developer.mozilla.org/ko/docs/Web/HTTP/Guides/CSP#예제_일반적인_사용_사례
+  - inline으로 들어간 스타일도 읽히지 않음
 - CSP의 일반적인 사용 사례
 - Content-Security-Policy-Report-Only 헤더 (진단 보고서)
+  - 실행은 허용하고 report를 받는다.
 - 사례 탐구: google.com
+
+```shell
+CSP Report: {
+  'csp-report': {
+    'document-uri': 'http://localhost:3000/',
+    referrer: 'http://localhost:3000/',
+    'violated-directive': 'style-src-elem',
+    'effective-directive': 'style-src-elem',
+    'original-policy': 'default-src "self"; report-uri /report',
+    disposition: 'report',
+    'blocked-uri': 'inline',
+    'line-number': 5,
+    'source-file': 'http://localhost:3000/',
+    'status-code': 200,
+    'script-sample': ''
+  }
+}
+```
 
 <br>
 
