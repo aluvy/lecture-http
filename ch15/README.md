@@ -22,24 +22,44 @@
 ## 15-1. 해시
 
 - 해시함수
-- 특징: 고정 길이, 고유성, 변경 불가, 단방향
-- MD5
+- 해시 값(다이제스트) 특징: 고정 길이, 고유성, 변경 불가, 단방향
+- 대표적인 해시 함수: MD5
 
 <br>
 
 ## 15-2. 암호화
 
 - 해시 함수의 한계
+  - 복호화 불가: 변경한 값을 원래 값으로 복구할 수 없음
 - 특징: 암호화, 복호화, 키
-- AES
+  - 암호화 키와 복호화 키가 같으면 '대칭키 암호화'
+  - 암호화 키와 복호화 키가 다르면 '비대칭키 암호화'
+- 대표적인 암호화 알고리즘: AES
 
 <br>
 
-## 15-3. 비칭키 암호화
+## 15-3. 비대칭키 암호화
 
 - 대칭키 암호화의 한계
-- 특징: 서로 다른 키, 공개키, 개인키, 신분 증명
-- RSA
+  - 키 관리가 어려움
+  - 무결성 부족
+- 특징: 서로 다른 키, 공개키(암호화 할 때 사용), 개인키(복호화 할 때 사용), 신분 증명
+- 비대칭 키의 대표적인 알고리즘: RSA
+
+```shell
+# 개인키 생성
+$ openssl genpkey -algorithm RSA -out private_key.pem
+
+# 공개키 생성
+$ openssl rsa -putout -in private_key.pem -out public_key.pem
+
+# 공개키로 암호화
+$ echo "Hello World" | openssl rsautl -encrypt -inkey public_key.pem -pubin -out encrypted
+
+# 개인키로 복호화
+$ cat encrypted | openssl rsautl -decrypt -inkey private_key.pem
+```
+
 - 암호화 방식 비교: 해시 함수, 대칭키 암호화, 비대칭키 암호화
 
 <br>
