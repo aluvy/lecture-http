@@ -67,7 +67,28 @@ $ cat encrypted | openssl rsautl -decrypt -inkey private_key.pem
 ## 15-4. 디지털 서명
 
 - 디지털 서명의 원리: 해시 함수 사용, 개인키로 서명, 평문과 서명 전달, 서명의 유효성 검증
+  1. A: 평문 데이터로 해시값 생성 -> 개인키를 만들어 복호함수에 전달 -> 서명
+  2. 평문과 서명을 B에 전달
+  3. B: 평문 데이터로 해시값 생성 -> 전달 받은 서명을 전달 받은 공개키를 이용해 암호함수에 전달 -> 결과물
+  4. 결과물이 해시값과 같은지 체크
 - 디지털 서명 실습
+
+```shell
+# 평문 생성
+$ echo "It's me" > message.txt
+
+# md5로 해시값 생성
+$ cat message.txt | md5 > message.md5
+
+# 서명 파일 제작
+$ cat message.md5 | openssl -dgst -md5 -sign private_key.pem -out message.sig
+
+# 평문과 서명 파일 B에게 전달
+
+# 검증
+$ cat message.md5 | openssl dgst -md5 -verify public_key.pem -signiture message.sig
+
+```
 
 <br>
 
