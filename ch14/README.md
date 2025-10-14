@@ -56,8 +56,13 @@
 
 ## 14-4. CORS를 사용하는 요청
 
-- fetch 함수, XMLHttpRequest 객체
+- https://developer.mozilla.org/ko/docs/Web/HTTP/Guides/CORS#어떤_요청이_cors를_사용합니까
+- fetch 함수
+- XMLHttpRequest 객체
 - 웹 폰트 (@font-face)
+- WebGL 텍스쳐
+- drawImage()를 사용해 캔버스에 그린 이미지/비디오 프레임
+- 이미지로부터 추출하는 CSS Shapes
 
 <br>
 
