@@ -5,6 +5,9 @@ const static = require('./shared/serve-static');
 const handler = (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // 출처명시: http://localhost:3000 도 사용 허용한다.
   res.setHeader('Access-Control-Allow-Headers', 'X-Foo'); // 커스텀 헤더 이름 명시
+  res.setHeader('Access-Control-Allow-Methods', 'PUT'); // 사전요청 (PUT, PATCH, DELETE 메소드를 사용)
+  res.setHeader('Access-Control-Max-Age', '10');
+
   static(path.join(__dirname, 'public'))(req, res);
 };
 
