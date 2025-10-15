@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CH16</title>
+  <style>
+    img {
+      width: 50%;
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded');
+    })
+
+    window.addEventListener('load', () => {
+      console.log('load');
+      const entries = performance.getEntriesByType('measure');
+      entries.forEach(entry => {
+        const result = `${entry.name}: ${entry.startTime}, ${entry.duration}ms`;
+        console.log(result);
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <script>
+    performance.mark("script-big-start");
+  </script>
+  <script src="script-big.js"></script>
+  <script>
+    performance.mark("script-small-start");
+  </script>
+  <script src="script-small.js"></script>
+</body>
+
+</html>
