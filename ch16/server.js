@@ -10,6 +10,10 @@ const handler = (req, res) => {
   if (filename === 'script-small.js') res.delayMs = 1000;
 
   if (filename === 'cat.jpg') res.delayMs = 1000;
+  if (filename === 'index-next.html') {
+    res.delayMs = 3000;
+    res.setHeader('Cache-Control', 'max-age=3600'); // for firefox
+  }
 
   static(path.join(__dirname, 'public'))(req, res);
 };

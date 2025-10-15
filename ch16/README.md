@@ -57,6 +57,10 @@
 - 다운로드 완료한 순서대로 실행한다.
 - DOM에 무관하거나 서로 영향을 주지 않는 스크립트에 적합, 광고나 분석 트래커
 
+```html
+<script src="script-big.js" async></script>
+```
+
 <br>
 
 ## 16-4. Defer
@@ -67,6 +71,10 @@
 - 순서대로 실행해야하는 스크립트
 - **미리 다운로드한 뒤 실행 순서를 보장하는 방법**
 - 서로 의존하는 스크립트에 적합
+
+```html
+<script src="script-big.js" defer></script>
+```
 
 <br>
 
@@ -85,10 +93,18 @@
 
 ## 16-6. Prefetch
 
-- 다음 페이지에서 사용할 자원을 미리 다운로드하는 방법
+- **다음 페이지에서 사용할 자원을 미리 다운로드**하는 방법
 - 용량이 큰 다음 페이지로 이동하는 상황
 - 링크 이동과 동시에 페이지가 렌더링되도록 개선
 - 다음 문서의 렌더링 성능을 높일 때 활용
+
+```html
+<link rel="prefetch" href="index-next.html" as="html" />
+```
+
+- link prefetch는 아직 모든 브라우저에서 동작하지 않는다.
+- 어플리케이션의 브라우저 지원 범위를 고려하면서 사용해야 한다.
+- https://caniuse.com/?search=link+prefetch
 
 <br>
 
