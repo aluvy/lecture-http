@@ -97,6 +97,48 @@ $ cat message.md5 | openssl dgst -md5 -verify public_key.pem -signiture message.
 - 디지털 인증서 원리
 - 디지털 인증서 사례
 
+디지털 인증서: 신뢰할 수 있는 기관이 인터넷상에서 사용자의 신원을 보증하는 문서
+
+- 사용자 이름
+- 유효 기간
+- 발급자 정보
+- 디지털 서명
+- 공개키
+
+대부분의 디지털 인증서는 x.509라는 표준 형식을 따른다.  
+이 형식은 공통적으로 사용되는 인증서의 구조를 규정한다.
+
+구글의 사례를 살펴본다.
+
+```shell
+# HTTPS, TLS 서버에 연결을 시도
+$ openssl s_client -connect www.google.com:443 -servername google.com </dev/null> google.crt
+```
+
+google.crt 파일이 다운로드 된다.
+
+```shell
+# 출력값
+Connecting to 142.250.76.132
+depth=2 C=US, O=Google Trust Services LLC, CN=GTS Root R4
+verify return:1
+depth=1 C=US, O=Google Trust Services, CN=WE2
+verify return:1
+depth=0 CN=*.google.com
+verify return:1
+DONE
+```
+
+```shell
+$ cat google.crt
+```
+
+다운로드 한 인증서 내용을 확인할 때도 OpenSSL을 사용한다.
+
+```shell
+$ openssl x509 -in google.crt -text -noout
+```
+
 <br>
 
 ## 15-6. TLS
@@ -110,6 +152,54 @@ $ cat message.md5 | openssl dgst -md5 -verify public_key.pem -signiture message.
 
 - 디지털 인증서 생성
 - 인증서로 HTTPS 서버 제작
+
+curl로 구글 사이트에 요청을 보내본다.
+
+```shell
+$ curl https://google.com -v
+```
+
+```shell
+# 결과값
+* Host google.com:443 was resolved. # 433번 포트로 접속 시도
+* IPv6: (none)
+* IPv4: 142.250.207.110
+*   Trying 142.250.207.110:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Connected to google.com (142.250.207.110) port 443
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: google.com
+> User-Agent: curl/8.14.1
+> Accept: */*
+>
+* Request completely sent off
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: SSL/TLS connection renegotiated
+< HTTP/1.1 301 Moved Permanently
+< Location: https://www.google.com/
+< Content-Type: text/html; charset=UTF-8
+< Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-Png0H5wWMDwTaMfkEn5VIQ' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+< Date: Wed, 15 Oct 2025 05:57:28 GMT
+< Expires: Fri, 14 Nov 2025 05:57:28 GMT
+< Cache-Control: public, max-age=2592000
+< Server: gws
+< Content-Length: 220
+< X-XSS-Protection: 0
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+<
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="https://www.google.com/">here</A>.
+</BODY></HTML>
+* Connection #0 to host google.com left intact
+```
 
 <br>
 
