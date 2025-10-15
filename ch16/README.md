@@ -77,6 +77,10 @@
 - 클릭과 동시에 이미지가 렌더링되도록 개선
 - 이미지, 비디오, 스타일시트, 폰트, 자바스크립트 등에 활용
 
+```html
+<link rel="preload" href="cat.jpg" as="image" />
+```
+
 <br>
 
 ## 16-6. Prefetch

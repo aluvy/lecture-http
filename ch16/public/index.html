@@ -24,6 +24,9 @@
       })
     })
   </script>
+
+  <!-- preload -->
+  <link rel="preload" href="cat.jpg" as="image">
 </head>
 
 <body>
@@ -37,6 +40,15 @@
   </script>
   <!-- <script src="script-small.js" async></script> -->
   <script src="script-small.js" defer></script>
+
+  <button type="button" id="addImageButton">Add Image</button>
+  <script>
+    document.querySelector("#addImageButton").addEventListener('click', () => {
+      const img = document.createElement('img');
+      img.src = 'cat.jpg';
+      document.body.appendChild(img);
+    })
+  </script>
 </body>
 
 </html>

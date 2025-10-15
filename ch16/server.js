@@ -9,6 +9,8 @@ const handler = (req, res) => {
   if (filename === 'script-big.js') res.delayMs = 3000;
   if (filename === 'script-small.js') res.delayMs = 1000;
 
+  if (filename === 'cat.jpg') res.delayMs = 1000;
+
   static(path.join(__dirname, 'public'))(req, res);
 };
 
