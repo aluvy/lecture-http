@@ -30,11 +30,13 @@
   <script>
     performance.mark("script-big-start");
   </script>
-  <script src="script-big.js"></script>
+  <!-- <script src="script-big.js" async></script> -->
+  <script src="script-big.js" defer></script>
   <script>
     performance.mark("script-small-start");
   </script>
-  <script src="script-small.js"></script>
+  <!-- <script src="script-small.js" async></script> -->
+  <script src="script-small.js" defer></script>
 </body>
 
 </html>
