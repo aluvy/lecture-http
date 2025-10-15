@@ -201,6 +201,48 @@ The document has moved
 * Connection #0 to host google.com left intact
 ```
 
+### 서버 제작 실습
+
+```shell
+# 인증서 생성 server.key
+$ openssl genrsa -out server.key 2048
+
+# 인증서 서명 요청 생성 server.csr
+$ openssl req -new -key server.key -out server.csr
+# Country Name: KO
+# State or Province Name: Seoul
+# 나머지는 엔터
+
+# server.csr로 서명된 인증서 파일 생성 server.cert
+$ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.cert
+
+# server.cert 인증서로 https 서버를 생성
+```
+
+서버 실행 후
+
+```shell
+$ curl -v https://localhost:3000
+```
+
+```shell
+# 출력 값
+$ curl -v https://localhost:3000
+* Host localhost:3000 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:3000...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - 신뢰되지 않은 기관에서 인증서  체인을 발급했습니다.
+* closing connection #0
+curl: (60) schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
+```
+
 <br>
 
 ## 15-8. 중간 정리
