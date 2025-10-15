@@ -15,6 +15,9 @@
 
 # 17장. 캐싱
 
+캐시는 데이터를 미리 복사해 놓는 별도의 저장소를 말한다.  
+반복 작업을 줄이고 어플리케이션의 성능을 높여주는 역할을 한다.
+
 - https://developer.mozilla.org/ko/docs/Web/HTTP/Guides/Caching
 - https://jeonghwan-kim.github.io/2024/02/08/http-caching
 - https://web.dev/articles/http-cache?hl=ko#examples
@@ -25,26 +28,26 @@
 
 ## 17-1. 시간 기반 캐싱
 
-- 서버가 파일 수정일을 Last-Modified 응답 헤더에 싣는다.
-- 브라우저가 파일을 캐싱하고 If-Modified-Since 요청 헤더에 싣는다.
+- 서버가 파일 수정일을 **Last-Modified** 응답 헤더에 싣는다.
+- 브라우저가 파일을 캐싱하고 **If-Modified-Since** 요청 헤더에 싣는다.
 
 <br>
 
 ## 17-2. 내용 기반 캐싱
 
 - 시간 기반의 캐시는 한계가 있다.
-- 파일 내용을 비교하는 방법을 ETag라고 한다.
+- 파일 내용을 비교하는 방법을 **ETag**라고 한다.
 - 서버가 해당 패시값을 ETag 응답 헤더에 싣는다.
-- 브라우저가 파일을 캐싱하고 If-None-Match 요청 헤더에 싣는다.
+- 브라우저가 파일을 캐싱하고 **If-None-Match** 요청 헤더에 싣는다.
 
 <br>
 
 ## 17-3. 캐시 제어
 
-- 서버는 더 세밀한 캐시 정책을 Cache-Control 응답 헤더에 싣는다.
-- max-age: 브라우저가 자원을 일정기간 캐싱하고 서버에 접속하지 않는다.
-- no-cache: 브라우저는 캐시가 신선한지 매번 서버에 접속해 확인한다.
-- no-store: 브라우저는 이 자원을 캐싱하지 않는다.
+- 서버는 더 세밀한 캐시 정책을 **Cache-Control** 응답 헤더에 싣는다.
+- **max-age**: 브라우저가 자원을 일정기간 캐싱하고 서버에 접속하지 않는다.
+- **no-cache**: 브라우저는 캐시가 신선한지 매번 서버에 접속해 확인한다.
+- **no-store**: 브라우저는 이 자원을 캐싱하지 않는다.
 
 <br>
 
