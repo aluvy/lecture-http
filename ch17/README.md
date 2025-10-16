@@ -81,9 +81,16 @@ res.setHeader('ETag', etag);
 ## 17-3. 캐시 제어
 
 - 서버는 더 세밀한 캐시 정책을 **Cache-Control** 응답 헤더에 싣는다.
-- **max-age**: 브라우저가 자원을 일정기간 캐싱하고 서버에 접속하지 않는다.
-- **no-cache**: 브라우저는 캐시가 신선한지 매번 서버에 접속해 확인한다.
-- **no-store**: 브라우저는 이 자원을 캐싱하지 않는다.
+  - **max-age**: 브라우저가 자원을 일정기간 캐싱하고 서버에 접속하지 않는다.
+  - **no-cache**: 브라우저는 캐시가 신선한지 매번 서버에 접속해 확인한다.
+  - **no-store**: 브라우저는 이 자원을 캐싱하지 않는다.
+
+```shell
+< Cache-Control: max-age=5  # 5초
+< Cache-Control: max-age=0
+< Cache-Control: no-cache
+< Cache-Control: no-store # 캐싱하지 마
+```
 
 <br>
 
