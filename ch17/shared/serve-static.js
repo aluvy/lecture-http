@@ -20,7 +20,20 @@ const serveStatic = (root) => {
         return;
       }
 
+      const etag = `${stat.mtime.getTime().toString(16)}-${stat.size.toString(16)}`;
       const modified = stat.mtime;
+
+      if (req.headers['if-none-match']) {
+        const noneMatch = req.headers['if-none-match'];
+
+        const isFresh = noneMatch === etag;
+
+        if (isFresh) {
+          res.statusCode = 304; // Not Modified
+          res.end();
+          return;
+        }
+      }
 
       if (req.headers['if-modified-since']) {
         const modifiedSince = new Date(req.headers['if-modified-since']);
@@ -34,6 +47,7 @@ const serveStatic = (root) => {
         }
       }
 
+      res.setHeader('ETag', etag);
       res.setHeader('Last-Modified', modified.toUTCString());
 
       fs.readFile(filepath, (err, data) => {

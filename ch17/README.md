@@ -31,6 +31,24 @@
 - 서버가 파일 수정일을 **Last-Modified** 응답 헤더에 싣는다.
 - 브라우저가 파일을 캐싱하고 **If-Modified-Since** 요청 헤더에 싣는다.
 
+```javascript
+const modified = stat.mtime;
+
+if (req.headers['if-modified-since']) {
+  const modifiedSince = new Date(req.headers['if-modified-since']);
+
+  const isFresh = !(Math.floor(modifiedSince.getTime() / 1000) < Math.floor(modified.getTime() / 1000));
+
+  if (isFresh) {
+    res.statusCode = 304; // Not Modified
+    res.end();
+    return;
+  }
+}
+
+res.setHeader('Last-Modified', modified.toUTCString());
+```
+
 <br>
 
 ## 17-2. 내용 기반 캐싱
@@ -39,6 +57,24 @@
 - 파일 내용을 비교하는 방법을 **ETag**라고 한다.
 - 서버가 해당 패시값을 ETag 응답 헤더에 싣는다.
 - 브라우저가 파일을 캐싱하고 **If-None-Match** 요청 헤더에 싣는다.
+
+```javascript
+const etag = `${stat.mtime.getTime().toString(16)}-${stat.size.toString(16)}`;
+
+if (req.headers['if-none-match']) {
+  const noneMatch = req.headers['if-none-match'];
+
+  const isFresh = noneMatch === etag;
+
+  if (isFresh) {
+    res.statusCode = 304; // Not Modified
+    res.end();
+    return;
+  }
+}
+
+res.setHeader('ETag', etag);
+```
 
 <br>
 
