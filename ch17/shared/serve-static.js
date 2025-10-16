@@ -91,6 +91,14 @@ const serveStatic = (root) => {
         }
         res.setHeader('Content-Type', contentType);
 
+        if (ext === '.js') {
+          // 자바스크립트는 한 번 다운로드 하면 1년 동안 네트워크 요청을 하지 않고 브라우저 캐시에 있는 값을 사용하도록 설정
+          res.setHeader('Cache-Control', 'max-age=315360000'); // 1년
+        } else if (ext === '.html') {
+          // 캐시는 저장하지만 브라우저가 매번 이 캐시가 유효한지를 서버한테 확인하라는 정책
+          res.setHeader('Cache-Control', 'no-cache');
+        }
+
         res.write(data);
         res.end();
       });

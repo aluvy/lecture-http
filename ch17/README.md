@@ -96,16 +96,42 @@ res.setHeader('ETag', etag);
 
 ## 17-4. 기타 캐싱 헤더
 
-- Expires: 서버가 파일의 캐시 만료일을 지정하는 응답 헤더
+- Expires: 서버가 파일의 **캐시 만료일을 지정**하는 응답 헤더 (서버에 접속하지 않고 브라우저에 캐싱한 정보만 사용한다.)
+  - 다른 시간 컨트롤 헤더와 비교
+    - Last-Modified: 매번 서버에 접속해서 캐시 신선도를 검증한다.
+    - Cache-Control: max-age=xxx: 초단위 값 사용
+
+```shell
+# 서버가 파일의 유효기간을 Expires라는 응답 헤더에 싣는다.
+< Expires: Tue, 31 Dec 2024 15:00:00 GMT
+```
+
 - Vary: 서버가 클라이언트에게 캐시 식별자를 전달하는 헤더
+
+```shell
+# accept-language별로 응답을 구상하라
+< Vary: accept-language
+```
 
 <br>
 
 ## 17-5. 캐싱 활용 전략
 
-- HTML이 아닌 파일: 최대한 길게 캐싱한다.
+- HTML이 아닌 파일: 최대한 길게 캐싱한다. (1년 설정 권장, Cache-Control: max-age=315360000)
 - HTML 파일: 서버에 캐시 신선도를 확인한다.
 - 파일별로 Cache-Control 캐시 정책을 전달해 브라우저가 네트웍 요청을 최소화 하도록 유도한다.
+
+```javascript
+const ext = path.extname(filepath).toLowerCase();
+
+if (ext === '.js') {
+  // 자바스크립트는 한 번 다운로드 하면 1년 동안 네트워크 요청을 하지 않고 브라우저 캐시에 있는 값을 사용하도록 설정
+  res.setHeader('Cache-Control', 'max-age=315360000'); // 1년
+} else if (ext === '.html') {
+  // 캐시는 저장하지만 브라우저가 매번 이 캐시가 유효한지를 서버한테 확인하라는 정책
+  res.setHeader('Cache-Control', 'no-cache');
+}
+```
 
 <br>
 
